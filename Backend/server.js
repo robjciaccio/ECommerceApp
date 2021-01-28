@@ -2,8 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 
 const app = express()
-const fs = require('fs')
-const path = require('path')
+// const fs = require('fs')
+// const path = require('path')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -21,6 +21,12 @@ app.use((req, res, next) => {
 })
 
 const port = 4001
+
+const usersRouter = require('./api/users')
+app.use('/users', usersRouter)
+
+const productsRouter = require('./api/products')
+app.use('/products', productsRouter)
 
 app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`)
